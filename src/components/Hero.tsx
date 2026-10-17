@@ -1,22 +1,9 @@
 import { lazy, Suspense, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { profile, journey } from "../data/profile";
-import { useClock } from "../hooks/useClock";
+import { profile } from "../data/profile";
 import OrbitRing from "./OrbitRing";
 
 const Scene3D = lazy(() => import("./Scene3D"));
-
-function Clock({ place, tz, note }: { place: string; tz: string; note: string }) {
-  const time = useClock(tz);
-  return (
-    <div className="hero-clock">
-      <span className="hero-clock-time">{time}</span>
-      <span className="hero-clock-place">
-        {place} <em>{note}</em>
-      </span>
-    </div>
-  );
-}
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -80,17 +67,6 @@ export default function Hero() {
             <a className="btn btn-ghost" href={profile.resumeFile} target="_blank" rel="noreferrer">
               Résumé
             </a>
-          </motion.div>
-
-          <motion.div
-            className="hero-clocks"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.9, delay: 0.5 }}
-          >
-            {journey.map((j) => (
-              <Clock key={j.place} place={j.place} tz={j.tz} note={j.note} />
-            ))}
           </motion.div>
         </motion.div>
       </div>

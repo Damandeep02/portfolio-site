@@ -350,36 +350,6 @@ p {
   gap: 14px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 56px;
-}
-
-.hero-clocks {
-  display: flex;
-  gap: clamp(24px, 5vw, 56px);
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.hero-clock {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.hero-clock-time {
-  font-size: var(--step-lead);
-  font-weight: 600;
-  color: var(--dark-ink);
-  font-variant-numeric: tabular-nums;
-}
-
-.hero-clock-place {
-  font-size: var(--step-small);
-  color: var(--dark-muted);
-}
-.hero-clock-place em {
-  font-style: normal;
-  opacity: 0.7;
 }
 
 @media (max-width: 640px) {
