@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, useScroll } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const links = [
   { href: "#about", label: "About" },
@@ -17,6 +17,7 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("top");
   const { scrollYProgress } = useScroll();
+  const cometLeft = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -42,7 +43,10 @@ export default function Nav() {
 
   return (
     <>
-      <motion.div className="scroll-progress" style={{ scaleX: scrollYProgress }} />
+      <div className="scroll-track">
+        <motion.div className="scroll-progress" style={{ scaleX: scrollYProgress }} />
+        <motion.div className="scroll-comet" style={{ left: cometLeft }} />
+      </div>
       <header className="nav">
         <a className="nav-brand" href="#top" onClick={close}>
           DS<span className="dot">.</span>

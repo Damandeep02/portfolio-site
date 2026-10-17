@@ -121,15 +121,32 @@ p {
 }
 
 /* ---------- Nav ---------- */
-.scroll-progress {
+.scroll-track {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: 2px;
   z-index: 60;
-  background: var(--accent-dark);
+}
+
+.scroll-progress {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #1f6fb8, var(--accent-dark));
   transform-origin: 0 0;
+}
+
+.scroll-comet {
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  border-radius: 50%;
+  background: #cfe8ff;
+  box-shadow: 0 0 10px 3px rgba(151, 206, 255, 0.9), 0 0 22px 7px rgba(41, 151, 255, 0.5);
+  transform: translateY(-50%);
 }
 
 .nav {
@@ -248,10 +265,48 @@ p {
   padding: 120px 24px 48px;
 }
 
+.hero-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.hero-stage > * {
+  grid-area: 1 / 1;
+}
+
+.hero-backdrop {
+  width: min(620px, 86vw);
+  height: min(620px, 86vw);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.orbit-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbit-ring {
+  width: 92%;
+  height: 92%;
+  animation: orbit-spin 18s linear infinite;
+}
+
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .hero-scene {
-  width: min(380px, 56vw);
-  height: min(380px, 56vw);
-  margin-bottom: -20px;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 62%;
+  height: 62%;
 }
 
 .hero-content {
@@ -268,6 +323,7 @@ p {
   line-height: 0.98;
   color: #fff;
   margin-bottom: 18px;
+  text-shadow: 0 4px 32px rgba(0, 0, 0, 0.55);
 }
 
 .hero-role {
