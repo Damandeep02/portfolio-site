@@ -1,9 +1,9 @@
 export const profile = {
   name: "Damandeep Singh",
-  role: "Machine Learning Engineer",
+  role: "Software Engineer",
   subrole: "M.S. Computer Science · Texas A&M",
   tagline:
-    "Three years building production ML and LLM systems. Now training transformers on A100s to predict clinical risk before it happens.",
+    "Three years of production systems experience — backend infrastructure, LLM agent tooling, and applied machine learning.",
   location: "College Station, TX",
   email: "dmnsingh007@gmail.com",
   phone: "+1 979-412-6875",
@@ -12,10 +12,10 @@ export const profile = {
   resumeFile: "/Damandeep_Singh.pdf",
 };
 
-export const about = `Machine learning engineer and M.S. Computer Science student at Texas A&M, three years into
-building production ML and LLM systems. Work spans LLM agents, transformers, computer vision,
-federated learning, and meta-learning — with end-to-end ownership of high-scale backend services
-along the way.
+export const about = `Software engineer and M.S. Computer Science student at Texas A&M, with three years of
+production systems experience — backend infrastructure, LLM agent tooling, and applied machine
+learning. Work has spanned LLM agents, transformers, computer vision, and federated learning,
+alongside end-to-end ownership of high-scale backend services.
 
 Before the M.S., two years as a software engineer at MediBuddy, owning a revenue-critical service
 end to end. Before that, research internships at IIT Delhi and IIT Hyderabad. B.Tech in Information
@@ -61,7 +61,7 @@ export const research: ExperienceItem[] = [
     location: "College Station, TX",
     period: "Aug 2026 — Present",
     points: [
-      "Working on long event-sequence modeling with a causal temporal transformer, forecasting daily value trajectories that feed a downstream 30-day clinical risk-prediction model.",
+      "Working on long event-sequence modeling with a causal temporal transformer, forecasting daily value trajectories that feed a downstream 30-day risk-prediction model.",
       "Set up training on NVIDIA A100 GPUs via TAMU's High Performance Research Computing cluster.",
     ],
   },
