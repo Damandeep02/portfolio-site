@@ -3,10 +3,10 @@ import { motion, useScroll } from "framer-motion";
 
 const links = [
   { href: "#about", label: "About" },
+  { href: "#work", label: "Work" },
   { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
-  { href: "#skills", label: "Skills" },
-  { href: "#interests", label: "Interests" },
+  { href: "#numbers", label: "Numbers" },
+  { href: "#notes", label: "Notes" },
   { href: "#contact", label: "Contact" },
 ];
 

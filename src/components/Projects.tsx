@@ -1,53 +1,50 @@
-import { motion, useMotionTemplate } from "framer-motion";
-import { projects } from "../data/profile";
-import { useTilt } from "../hooks/useTilt";
-import { useReveal } from "../hooks/useReveal";
+import { useState } from "react";
 import Reveal from "./Reveal";
+import { projects } from "../data/profile";
 
-function ProjectCard({ p }: { p: (typeof projects)[number] }) {
-  const { ref, rotateX, rotateY, glowX, glowY, onMouseMove, onMouseLeave } = useTilt(8);
-  const { opacity, y, scale } = useReveal(ref, 36);
-  const background = useMotionTemplate`radial-gradient(180px circle at ${glowX}% ${glowY}%, rgba(110,231,200,0.14), transparent 70%)`;
-
-  return (
-    <motion.a
-      ref={ref as React.Ref<HTMLAnchorElement>}
-      className={`project-card ${p.featured ? "featured" : ""}`}
-      href={p.url}
-      target="_blank"
-      rel="noreferrer"
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
-      style={{ rotateX, rotateY, opacity, y, scale, transformPerspective: 800 }}
-    >
-      <motion.div className="project-spotlight" style={{ background }} />
-      <div className="project-card-top">
-        <h3>{p.name}</h3>
-        <span className="project-arrow">&#8599;</span>
-      </div>
-      <p>{p.description}</p>
-      <div className="project-tags">
-        {p.tags.map((t) => (
-          <span key={t}>{t}</span>
-        ))}
-      </div>
-    </motion.a>
-  );
-}
+const PALETTE = ["spine-a", "spine-b", "spine-c", "spine-d"];
 
 export default function Projects() {
+  const [active, setActive] = useState(0);
+  const current = projects[active];
+
   return (
-    <section id="projects" className="section">
+    <section id="work" className="section work">
       <Reveal className="section-head">
-        <span className="section-num">03</span>
-        <h2>Projects</h2>
+        <h2>Index of work</h2>
+        <p className="section-note">Six entries. Open one.</p>
       </Reveal>
 
-      <div className="project-grid">
-        {projects.map((p) => (
-          <ProjectCard p={p} key={p.name} />
+      <Reveal className="shelf" distance={32}>
+        {projects.map((p, i) => (
+          <button
+            key={p.name}
+            type="button"
+            className={`spine ${PALETTE[i % PALETTE.length]} ${i === active ? "is-active" : ""}`}
+            onClick={() => setActive(i)}
+            aria-pressed={i === active}
+          >
+            <span className="spine-name">{p.name}</span>
+            <span className="spine-tag">{p.tags[0]}</span>
+            {p.featured && <span className="spine-mark" aria-hidden="true" />}
+          </button>
         ))}
-      </div>
+      </Reveal>
+
+      <Reveal className="work-caption" distance={20}>
+        <h3>{current.name}</h3>
+        <p>{current.description}</p>
+        <div className="work-caption-foot">
+          <div className="work-tags">
+            {current.tags.map((t) => (
+              <span key={t}>{t}</span>
+            ))}
+          </div>
+          <a href={current.url} target="_blank" rel="noreferrer">
+            View repository &#8599;
+          </a>
+        </div>
+      </Reveal>
     </section>
   );
 }

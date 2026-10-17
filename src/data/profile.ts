@@ -157,28 +157,46 @@ export const skills = {
 
 export type Interest = {
   label: string;
-  emoji: string;
   blurb: string;
-  accent: string;
 };
 
 export const interests: Interest[] = [
   {
     label: "Tennis",
-    emoji: "🎾",
     blurb: "Chasing down every ball I have no business reaching.",
-    accent: "#c3f24d",
   },
   {
     label: "Cricket",
-    emoji: "🏏",
     blurb: "Backyard fast bowler, occasional top-order collapse.",
-    accent: "#6ee7c8",
   },
   {
     label: "Afrobeats & Hip-Hop",
-    emoji: "🎧",
     blurb: "Afrobeats and hip-hop on repeat while the code compiles.",
-    accent: "#f472b6",
   },
+];
+
+export type ImpactRow = {
+  label: string;
+  value: string;
+  detail: string;
+};
+
+export const impact: ImpactRow[] = [
+  { label: "Billing leakage, MediBuddy", value: "₹6L → ₹65K", detail: "FIFO idempotency + transactional state machines" },
+  { label: "Medicine delivery SLA", value: "48h → 6h", detail: "weighted vendor assignment + Redis caching" },
+  { label: "Prescription review", value: "10 min → real-time", detail: "Textract OCR + transfer learning" },
+  { label: "Face-recognition latency", value: "−20%", detail: "468-point landmark optimization, IIT Hyderabad" },
+  { label: "Devfolio Base Hackathon", value: "1 of 16", detail: "winning teams, 4 countries, Oct 2024" },
+  { label: "MediBuddy AI/ML Hackathon", value: "2nd place", detail: "Doctor Copilot clinical decision-support POC" },
+  { label: "B.Tech, NIT Srinagar", value: "8.31 / 10", detail: "CGPA, top 10% of cohort" },
+];
+
+export const impactTotal = {
+  value: "89%",
+  caption: "cut in monthly financial leakage — the largest line in the ledger, MediBuddy billing reconciliation.",
+};
+
+export const journey = [
+  { place: "College Station, TX", tz: "America/Chicago", note: "filing from, now" },
+  { place: "Bengaluru · New Delhi · Hyderabad · Srinagar", tz: "Asia/Kolkata", note: "where the record started" },
 ];
