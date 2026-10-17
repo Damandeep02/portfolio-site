@@ -1,36 +1,36 @@
 import Reveal from "./Reveal";
-import { impact, impactTotal } from "../data/profile";
+import { impact, impactTotal, honors } from "../data/profile";
+import { useCountUp } from "../hooks/useCountUp";
 
 export default function Stats() {
+  const { ref, display } = useCountUp(89, "%");
+
   return (
-    <section id="numbers" className="section numbers">
-      <Reveal className="numbers-left" distance={32}>
-        <h2>What changed</h2>
-        <p className="section-note">
-          Every system Damandeep has touched, measured before and after.
-        </p>
-        <p className="numbers-total">{impactTotal.value}</p>
-        <p className="numbers-caption">{impactTotal.caption}</p>
+    <section id="numbers" className="section section-dark" data-theme="dark">
+      <Reveal className="numbers-head">
+        <h2>
+          <span ref={ref} className="numbers-giant">
+            {display}
+          </span>
+        </h2>
+        <p className="section-note">{impactTotal.caption}</p>
       </Reveal>
 
-      <Reveal className="receipt" distance={32}>
-        <ul>
-          {impact.map((row) => (
-            <li key={row.label}>
-              <div className="receipt-row">
-                <span className="receipt-label">{row.label}</span>
-                <span className="receipt-leader" aria-hidden="true" />
-                <span className="receipt-value">{row.value}</span>
-              </div>
-              <p className="receipt-detail">{row.detail}</p>
-            </li>
-          ))}
-        </ul>
-        <div className="receipt-total">
-          <span>Headline figure</span>
-          <span>{impactTotal.value}</span>
-        </div>
-      </Reveal>
+      <div className="stat-grid">
+        {impact.map((row, i) => (
+          <Reveal className="stat-tile" distance={24} delay={i * 0.05} key={row.label}>
+            <span className="stat-value">{row.value}</span>
+            <span className="stat-label">{row.label}</span>
+            <span className="stat-detail">{row.detail}</span>
+          </Reveal>
+        ))}
+        {honors.map((h, i) => (
+          <Reveal className="stat-tile" distance={24} delay={(impact.length + i) * 0.05} key={h.title}>
+            <span className="stat-value stat-value-small">{h.title}</span>
+            <span className="stat-detail">{h.detail}</span>
+          </Reveal>
+        ))}
+      </div>
     </section>
   );
 }

@@ -1,50 +1,28 @@
 import Reveal from "./Reveal";
-import { about, education, profile } from "../data/profile";
+import { about, education } from "../data/profile";
 
-const paragraphs = about
-  .replace(/\s+/g, " ")
-  .trim()
-  .split(/(?<=\.)\s+(?=[A-Z])/)
-  .reduce<string[]>((acc, sentence) => {
-    const last = acc[acc.length - 1];
-    if (last && last.length < 160) {
-      acc[acc.length - 1] = `${last} ${sentence}`;
-    } else {
-      acc.push(sentence);
-    }
-    return acc;
-  }, []);
+const paragraphs = about.split(/\n\n+/);
 
 export default function About() {
   return (
-    <section id="about" className="section about">
-      <div className="about-perforation" aria-hidden="true" />
-      <Reveal className="about-sheet" distance={36}>
-        <h2>Researcher&rsquo;s note</h2>
-        <div className="about-letter">
+    <section id="about" className="section section-light" data-theme="light">
+      <Reveal className="about-grid" distance={28}>
+        <div className="about-copy">
+          <h2>About</h2>
           {paragraphs.map((p) => (
-            <p key={p.slice(0, 20)}>{p}</p>
+            <p key={p.slice(0, 24)}>{p}</p>
           ))}
-          <p className="about-signoff">
-            &mdash; {profile.name}
-            <span>Software Engineer &rarr; Graduate Researcher</span>
-          </p>
         </div>
 
-        <div className="about-credentials">
+        <div className="about-edu">
           {education.map((ed) => (
-            <div className="about-credential" key={ed.school}>
-              <span className="about-credential-school">{ed.school}</span>
-              <span className="about-credential-degree">{ed.degree}</span>
-              <span className="about-credential-period">{ed.period}</span>
-              <span className="about-credential-detail">{ed.detail}</span>
+            <div className="edu-row" key={ed.school}>
+              <span className="edu-period">{ed.period}</span>
+              <h3>{ed.school}</h3>
+              <p>{ed.degree}</p>
+              <p className="edu-detail">{ed.detail}</p>
             </div>
           ))}
-        </div>
-
-        <div className="about-stub">
-          <span>tear along the perforation</span>
-          <a href={`mailto:${profile.email}`}>{profile.email}</a>
         </div>
       </Reveal>
     </section>

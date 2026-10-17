@@ -1,23 +1,29 @@
-import { useRef } from "react";
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { useReveal } from "../hooks/useReveal";
 
 export default function Reveal({
   children,
   className,
-  distance = 32,
+  distance = 28,
+  delay = 0,
+  as = "div",
 }: {
   children: ReactNode;
   className?: string;
   distance?: number;
+  delay?: number;
+  as?: "div" | "li";
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { opacity, y, scale } = useReveal(ref, distance);
-
+  const Component = motion[as];
   return (
-    <motion.div ref={ref} className={className} style={{ opacity, y, scale }}>
+    <Component
+      className={className}
+      initial={{ opacity: 0, y: distance }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+      transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
+    >
       {children}
-    </motion.div>
+    </Component>
   );
 }
